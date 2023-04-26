@@ -1,15 +1,35 @@
-export default function List() {
+import { useState } from 'react';
+
+interface ListProps {
+  list: string[];
+  heading: string;
+  onSelectItem: (listItem: number, listName: string) => void;
+}
+
+export default function List({ list, heading, onSelectItem }: ListProps) {
+  const [select, setSelect] = useState(-1);
+
+  const message = list.length === 0 && <p>No item found</p>;
+
   return (
     <>
-      <h1>Director List</h1>
+      <h1>{heading}</h1>
+      {message}
       <ul className="list-group">
-        <li className="list-group-item active" aria-current="true">
-          Top 5
-        </li>
-        <li className="list-group-item">A second item</li>
-        <li className="list-group-item">A third item</li>
-        <li className="list-group-item">A fourth item</li>
-        <li className="list-group-item">And a fifth one</li>
+        {list.map((name, idx) => (
+          <li
+            key={idx}
+            className={
+              select === idx ? 'list-group-item active' : 'list-group-item'
+            }
+            onClick={() => {
+              setSelect(idx);
+              onSelectItem(idx, name);
+            }}
+          >
+            {name}
+          </li>
+        ))}
       </ul>
     </>
   );
