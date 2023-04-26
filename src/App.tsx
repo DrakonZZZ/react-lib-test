@@ -14,7 +14,7 @@ function App() {
   ];
 
   const handleSelectItem = (listItem: number, listName: string) => {
-    console.log(listItem, listName);
+    console.log(listName);
   };
 
   const [alertState, setalertState] = useState(false);

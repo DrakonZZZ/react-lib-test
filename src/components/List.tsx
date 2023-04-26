@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Like from './Like';
 
 interface ListProps {
   list: string[];
@@ -15,7 +16,7 @@ export default function List({ list, heading, onSelectItem }: ListProps) {
     <>
       <h1>{heading}</h1>
       {message}
-      <ul className="list-group">
+      <ul>
         {list.map((name, idx) => (
           <li
             key={idx}
@@ -28,6 +29,7 @@ export default function List({ list, heading, onSelectItem }: ListProps) {
             }}
           >
             {name}
+            <Like />
           </li>
         ))}
       </ul>
